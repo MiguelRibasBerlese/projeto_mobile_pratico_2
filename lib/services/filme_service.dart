@@ -11,19 +11,19 @@ class FilmeService {
 
   // Stream em tempo real dos filmes do usuário (RF005 — StreamBuilder)
   Stream<QuerySnapshot> streamFilmes({String? statusFiltro}) {
-    var query = _db
-        .collection(kColFilmes)
-        .where('uid', isEqualTo: _uid)
-        .orderBy('dataAdicionado', descending: true);
-
-    if (statusFiltro != null) {
-      query = _db
+    if (statusFiltro == null) {
+      return _db
           .collection(kColFilmes)
           .where('uid', isEqualTo: _uid)
-          .where('status', isEqualTo: statusFiltro)
-          .orderBy('dataAdicionado', descending: true);
+          .orderBy('dataAdicionado', descending: true)
+          .snapshots();
     }
-    return query.snapshots();
+    // Com filtro de status — sem orderBy para evitar índice composto
+    return _db
+        .collection(kColFilmes)
+        .where('uid', isEqualTo: _uid)
+        .where('status', isEqualTo: statusFiltro)
+        .snapshots();
   }
 
   // Adicionar filme a partir dos dados da API OMDb (RF003)

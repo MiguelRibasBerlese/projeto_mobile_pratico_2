@@ -151,7 +151,21 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       );
                     }
-                    final docs = snapshot.data!.docs;
+                    final docs = snapshot.data!.docs.toList();
+                    // Ordenação client-side quando há filtro de status
+                    if (_filtroStatus != null) {
+                      docs.sort((a, b) {
+                        final da = a.data() as Map<String, dynamic>;
+                        final db = b.data() as Map<String, dynamic>;
+                        final dataA =
+                            (da['dataAdicionado'] as Timestamp?)?.toDate() ??
+                                DateTime(0);
+                        final dataB =
+                            (db['dataAdicionado'] as Timestamp?)?.toDate() ??
+                                DateTime(0);
+                        return dataB.compareTo(dataA); // mais recente primeiro
+                      });
+                    }
                     return ListView.builder(
                       itemCount: docs.length,
                       itemBuilder: (context, i) {
