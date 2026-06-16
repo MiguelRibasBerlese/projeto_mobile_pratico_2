@@ -28,13 +28,31 @@ class ListasScreen extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           }
+          if (snapshot.hasError) {
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.all(24),
+                child: Text(
+                  'Erro ao carregar listas:\n${snapshot.error}',
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(color: Colors.red),
+                ),
+              ),
+            );
+          }
           if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
             return const EmptyState(
               icone: Icons.list_alt,
               mensagem: 'Nenhuma lista ainda.\nCrie sua primeira lista!',
             );
           }
-          final docs = snapshot.data!.docs;
+          final docs = List.from(snapshot.data!.docs)
+            ..sort((a, b) {
+              final aTs = (a.data() as Map)['dataCriacao'];
+              final bTs = (b.data() as Map)['dataCriacao'];
+              if (aTs == null || bTs == null) return 0;
+              return aTs.compareTo(bTs);
+            });
           return ListView.builder(
             itemCount: docs.length,
             itemBuilder: (_, i) {

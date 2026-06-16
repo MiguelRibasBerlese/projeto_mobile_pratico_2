@@ -8,11 +8,11 @@ class ListaService {
   String get _uid => FirebaseAuth.instance.currentUser!.uid;
 
   // Stream em tempo real das listas (RF005 — terceira coleção)
+  // Ordenação feita no cliente para evitar índice composto no Firestore
   Stream<QuerySnapshot> streamListas() {
     return _db
         .collection(kColListas)
         .where('uid', isEqualTo: _uid)
-        .orderBy('dataCriacao')
         .snapshots();
   }
 

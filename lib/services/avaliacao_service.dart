@@ -12,7 +12,6 @@ class AvaliacaoService {
     return _db
         .collection(kColAvaliacoes)
         .where('uid', isEqualTo: _uid)
-        .orderBy('dataCriacao', descending: true)
         .snapshots();
   }
 

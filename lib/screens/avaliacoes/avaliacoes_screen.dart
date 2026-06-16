@@ -36,7 +36,16 @@ class AvaliacoesScreen extends StatelessWidget {
                 'Nenhuma avaliação ainda.\nAvalte um filme na tela de detalhes!',
           );
         }
-        final docs = snapshot.data!.docs;
+        final docs = snapshot.data!.docs.toList();
+        docs.sort((a, b) {
+          final da = a.data() as Map<String, dynamic>;
+          final db = b.data() as Map<String, dynamic>;
+          final dataA =
+              (da['dataCriacao'] as Timestamp?)?.toDate() ?? DateTime(0);
+          final dataB =
+              (db['dataCriacao'] as Timestamp?)?.toDate() ?? DateTime(0);
+          return dataB.compareTo(dataA);
+        });
         return ListView.builder(
           itemCount: docs.length,
           itemBuilder: (_, i) {
