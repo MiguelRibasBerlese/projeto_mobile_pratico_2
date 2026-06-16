@@ -15,7 +15,6 @@ class FilmeService {
       return _db
           .collection(kColFilmes)
           .where('uid', isEqualTo: _uid)
-          .orderBy('dataAdicionado', descending: true)
           .snapshots();
     }
     // Com filtro de status — sem orderBy para evitar índice composto
