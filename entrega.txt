@@ -1,0 +1,7 @@
+Nome: Miguel Ribas Berlese
+Matrícula: 839938
+Nome: Enzo Shimada Daun
+Matrícula: 840552
+Repositório GitHub: https://github.com/MiguelRibasBerlese/projeto_mobile_pratico_2
+Endereço Firebase Hosting: <PREENCHER após firebase deploy>
+Link do vídeo: <PREENCHER>
