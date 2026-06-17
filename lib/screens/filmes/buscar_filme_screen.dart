@@ -76,9 +76,16 @@ class _BuscarFilmeScreenState extends State<BuscarFilmeScreen> {
                   ),
                 ),
                 const SizedBox(width: 8),
-                ElevatedButton(
-                  onPressed: _buscar,
-                  child: const Icon(Icons.search),
+                SizedBox(
+                  width: 52,
+                  height: 52,
+                  child: ElevatedButton(
+                    onPressed: _buscar,
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.zero,
+                    ),
+                    child: const Icon(Icons.search),
+                  ),
                 ),
               ],
             ),

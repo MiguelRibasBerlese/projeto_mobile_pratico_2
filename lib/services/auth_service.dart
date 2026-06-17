@@ -96,15 +96,25 @@ class AuthService {
   // Tradução dos códigos de erro do Firebase para português
   String _traduzirErro(String code) {
     switch (code) {
-      case 'invalid-email':        return 'Formato de e-mail inválido.';
-      case 'user-not-found':       return 'Nenhuma conta encontrada com este e-mail.';
-      case 'wrong-password':       return 'Senha incorreta.';
-      case 'invalid-credential':   return 'E-mail ou senha incorretos.';
-      case 'email-already-in-use': return 'Este e-mail já está cadastrado.';
-      case 'weak-password':        return 'Senha muito fraca.';
-      case 'too-many-requests':    return 'Muitas tentativas. Aguarde alguns minutos.';
-      case 'network-request-failed': return 'Erro de conexão. Verifique sua internet.';
-      default:                     return 'Erro: $code';
+      case 'invalid-email':
+        return 'Formato de e-mail inválido.';
+      case 'user-not-found':
+      case 'wrong-password':
+      case 'invalid-credential':
+      case 'INVALID_LOGIN_CREDENTIALS':
+        return 'E-mail ou senha incorretos.';
+      case 'email-already-in-use':
+        return 'Este e-mail já está cadastrado.';
+      case 'weak-password':
+        return 'A senha deve ter no mínimo 6 caracteres.';
+      case 'too-many-requests':
+        return 'Muitas tentativas. Aguarde alguns minutos.';
+      case 'network-request-failed':
+        return 'Erro de conexão. Verifique sua internet.';
+      case 'user-disabled':
+        return 'Esta conta foi desativada.';
+      default:
+        return 'Erro ao autenticar. Tente novamente.';
     }
   }
 }

@@ -9,11 +9,9 @@ class OmdbService {
     if (titulo.trim().isEmpty) return [];
 
     try {
-      final omdbUrl = '$kOmdbBaseUrl/?apikey=$kOmdbApiKey'
-          '&s=${Uri.encodeComponent(titulo)}&type=movie';
-
       final uri = Uri.parse(
-          'https://corsproxy.io/?${Uri.encodeComponent(omdbUrl)}');
+          '$kOmdbBaseUrl/?apikey=$kOmdbApiKey'
+          '&s=${Uri.encodeComponent(titulo)}&type=movie');
 
       final resposta = await http.get(uri);
 
@@ -49,11 +47,8 @@ class OmdbService {
 
   Future<OmdbFilme?> buscarPorId(String imdbId) async {
     try {
-      final omdbUrl =
-          '$kOmdbBaseUrl/?apikey=$kOmdbApiKey&i=$imdbId&plot=short';
-
       final uri = Uri.parse(
-          'https://corsproxy.io/?${Uri.encodeComponent(omdbUrl)}');
+          '$kOmdbBaseUrl/?apikey=$kOmdbApiKey&i=$imdbId&plot=short');
 
       final resposta = await http.get(uri);
 
