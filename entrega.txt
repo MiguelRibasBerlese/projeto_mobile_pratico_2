@@ -1,7 +1,7 @@
 Nome: Miguel Ribas Berlese
-Matrícula: 839938
+Código de aluno: 839938
 Nome: Enzo Shimada Daun
-Matrícula: 840552
+Código de aluno: 840552
 Repositório GitHub: https://github.com/MiguelRibasBerlese/projeto_mobile_pratico_2
 Endereço Firebase Hosting: https://cinetrack-e679e.web.app
 Link do vídeo: <PREENCHER>
